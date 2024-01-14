@@ -5,12 +5,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     startButton.addEventListener('click', function () {
         // Logic when Start button is clicked
-        localStorage.setItem('start', 'on');
-        localStorage.setItem('videoUrl', videoUrl.value);
+        chrome.storage.local.set({ 'start': 'on' });
+
     });
 
     endButton.addEventListener('click', function () {
         // Logic when End button is clicked
-        localStorage.setItem('start', 'off');
+        chrome.storage.local.set({ 'start': 'off' });
     });
+
+    videoUrl.addEventListener('change', () => {
+        chrome.storage.local.set({ 'videoUrl': videoUrl.value });
+    })
 });
